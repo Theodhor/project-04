@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+}
+.card{
+  height: 100%;
+}
+.card-header{
+  height: 10%;
+  border: 1px solid blue;
+  justify-content: space-around;
+}
+.cardup{
+  font-weight: bold;
+  font-size: 16px;
+}
+.card-image{
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  border: 1px solid darkgrey;
+}
+.usincont{
+  height:35vh;
+}
+.friendrel{
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.mainprof{
+  height: 50vh;
+
+}
+.profimage{
+  height: 50vh;
+}
+.profinfo{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 50hv;
+}
+.prfbtn{
+  height: 20hv;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.credentials{
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+.email{
+  font-size: 20px;
+}
+.alrfr{
+  font-size: 26px;
+  font-weight: bold;
+  color: blue;
+  text-align: center;
+  width: 100%;
+}
+.nrfr{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.boolbtn{
+  display: flex;
+  justify-content: space-around;
+}
+.between {
+display: flex;
+justify-content: space-between;
+}
+.around {
+justify-content: space-around;
+}
+
+.card{
+  height: 100%;
+}
+.homer{
+  height: 40vh;
+  width: 40vh;
+  text-align: center;
+}
+.justified{
+  align-items: center;
+}
+.spread{
+  justify-content:space-around;
+}
+
+.smallImage{
+  height: 10vh;
+}
+.imgcont{
+ display: flex;
+ align-items: center;
+}
+.editimage{
+  height: 60vh;
+  margin:30px auto;
+}
+.choice{
+ padding: 5px;
+ border-color: black;
+ background-color: darkgrey;
+ color: white;
+ font-size: 20px;
+ border-radius: 10px;
+ margin-top: 10px;
+}
+.frstm{
+  text-align: center;
+}
+
+.error{
+  height: 60vh;
+  width: 70%;
+  margin: 10px auto;
+}
