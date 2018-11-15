@@ -39,7 +39,7 @@ class UserShow extends React.Component {
   }
 
   canMakeRequest() {
-    return !this.isFriend() && !this.isNotConfirmedFriend() && !this.isRequestSent() && !this.isMe();
+    return Auth.isAuthenticated() && !this.isFriend() && !this.isNotConfirmedFriend() && !this.isRequestSent() && !this.isMe();
   }
 
   componentDidMount() {
