@@ -9,8 +9,10 @@ import FilterBarSurname from './FilterBarSurname';
 class UserIndex extends React.Component {
   constructor() {
     super();
-    this.state = {users: [], searchName: '', searchSurname: ''};
+    this.state = {users: [], searchName: '', searchSurname: '', limit: 8};
     this.handleChange = this.handleChange.bind(this);
+    this.increaseLimit = this.increaseLimit.bind(this);
+    this.decreaseLimit = this.decreaseLimit.bind(this);
 
   }
 
@@ -20,8 +22,8 @@ class UserIndex extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state.searchName, this.state.searchSurname);
+    this.setState({ [e.target.name]: e.target.value, limit: 8 });
+
   }
 
   filterUsersByName() {
@@ -36,20 +38,33 @@ class UserIndex extends React.Component {
       return re.test(user.surname);
     });
   }
+  setLimit(){
+    const input = this.filterUsers();
+    return input.length <= this.state.limit ?  input : input.slice(0,this.state.limit);
+  }
+  increaseLimit(){
+    const input = this.filterUsers();
+    input.length > this.state.limit + 4
+      ? this.setState({limit: this.state.limit + 4})
+      : this.setState({limit: input.length});
+  }
+  decreaseLimit(){
+    this.state.limit - 4 < 8
+      ? this.setState({limit: 8})
+      : this.state.limit % 4 === 0
+        ? this.setState({limit: this.state.limit - 4})
+        : this.setState({limit: this.state.limit - (this.state.limit % 4)});
+  }
   filterUsers(){
-    if(!this.state.searchName && !this.state.searchSurname){
-      return this.state.users;
-    }
-    if(this.state.searchName && !this.state.searchSurname){
-      return this.filterUsersByName();
-    }
-    if(!this.state.searchName && this.state.searchSurname){
-      return this.filterUsersBySurname();
-    }
+    if(!this.state.searchName && !this.state.searchSurname) return this.state.users;
+    if(this.state.searchName && !this.state.searchSurname) return this.filterUsersByName();
+    if(!this.state.searchName && this.state.searchSurname) return this.filterUsersBySurname();
     const nameFiltered = this.filterUsersByName();
     const surnameFiltered = this.filterUsersBySurname();
     return nameFiltered.filter(element => surnameFiltered.includes(element));
   }
+
+
 
 
   render() {
@@ -64,8 +79,7 @@ class UserIndex extends React.Component {
             <FilterBarSurname handleChange={this.handleChange} />
           </div>
           <ul className="columns is-multiline">
-            {this.filterUsers().length > 0 ? this.filterUsers().map(user =>
-
+            {this.setLimit().length > 0 ? this.setLimit().map(user =>
               <li
                 className="column is-one-quarter-desktop is-one-third-tablet usincont"
                 key={user.id}
@@ -79,6 +93,14 @@ class UserIndex extends React.Component {
               <img src="http://m.memegen.com/jvuug4.jpg" className="error"/>
             }
           </ul>
+          <div className="around">
+            {this.filterUsers().length > this.state.limit &&
+              <button className="choice" onClick={this.increaseLimit}>Show more</button>
+            }
+            {this.state.limit > 8 &&
+              <button className="choice" onClick={this.decreaseLimit}>Show less</button>
+            }
+          </div>
         </div>
       </main>
     );
