@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import Auth from '../lib/Auth';
+import Auth from '../../lib/Auth';
 import { Link } from 'react-router-dom';
 import UsersCard from './UsersCard';
-import ImageCard from './ImageCard';
+import ImageCard from '../images/ImageCard';
 
 
 class UserShow extends React.Component {
@@ -114,59 +114,52 @@ class UserShow extends React.Component {
       <main className="section">
         <div className="container">
           <div className="columns is-multiline">
+            {/*a third of the screen column, friends list */}
             <div className="column is-one-third">
               <div className="section">
-                <div className="friendrel">Friends</div>
-                <ul className="columns is-multiline">
-                  {this.state.user.friends.map(friend =>
+                {this.state.user.friends.length > 0 ?
+                  <div>
+                    <div className="friendrel ">
+                      Friends
+                    </div>
+                    <ul className="columns is-multiline blue-box">
+                      {this.state.user.friends.map(friend =>
+                        <li
+                          className="column is-one-third friend-card"
+                          key={friend.id}
+                        >
+                          <Link to={`/users/${friend.id}`}>
+                            <UsersCard {...friend} />
+                          </Link>
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                  :
+                  <div>
+                  </div>
+                }
+              </div>
+              <div>                
+                <div className="friendrel">Photos</div>
+                <ul className="columns is-multiline columns blue-box">
+                  {this.state.user.images.map(image =>
                     <li
-                      className="column is-half usincont"
-                      key={friend.id}
+                      className="column is-half"
+                      key={image.id}
                     >
-                      <Link to={`/users/${friend.id}`}>
-                        <UsersCard {...friend} />
+                      <Link to={`/images/${image.id}`}>
+                        <ImageCard {...image} />
                       </Link>
                     </li>
                   )}
                 </ul>
               </div>
-              {this.state.user.id === Auth.getPayload().sub && <div>
-                <div className="section">
-                  <div className="friendrel">Request recieved</div>
-                  <ul className="columns is-multiline">
-                    {this.state.user.not_confirmed_friends.map(friend =>
-                      <li
-                        className="column is-half usincont"
-                        key={friend.id}
-                      >
-                        <Link to={`/users/${friend.id}`}>
-                          <UsersCard {...friend} />
-                        </Link>
-                      </li>
-                    )}
-                  </ul>
-                </div>
-
-                <div className="section">
-                  <div className="friendrel"> Requests sent </div>
-                  <ul className="columns is-multiline">
-                    {this.state.user.request_sent.map(friend =>
-                      <li
-                        className="column is-half usincont"
-                        key={friend.id}
-                      >
-                        <Link to={`/users/${friend.id}`}>
-                          <UsersCard {...friend} />
-                        </Link>
-                      </li>
-                    )}
-                  </ul>
-                </div>
-              </div>}
             </div>
 
-            <div className="column is-half mainprof">
-              <div className="columns column">
+
+            <div className="column is-one-third mainprof">
+              <div className="columns column ">
                 <div className="column is-two-thirds">
                   <img className=" profimage" src={this.state.user.profile_image} alt="nothing" />
                 </div>
@@ -184,7 +177,7 @@ class UserShow extends React.Component {
                 {this.canMakeRequest() && <div className="nrfr">
                   <div className="boolbtn">
                     <button className="choice" onClick={this.makeRequest}>
-                      Require friendship
+                      Send a friend request
                     </button>
                   </div>
                 </div>}
@@ -201,14 +194,14 @@ class UserShow extends React.Component {
 
                 {this.isRequestSent() && <div className="nrfr">
                   <div className="frstm">
-                    {this.state.user.name} wants to be your friend
+                    {this.state.user.name} has sent you a friend request
                   </div>
                   <div className="boolbtn">
                     <button className="choice" onClick={this.acceptRequest}>
-                      I agree
+                      Accept
                     </button>
                     <button className="choice" onClick={this.refuseRequest}>
-                      I disagree
+                      Decline
                     </button>
                   </div>
                 </div>}
@@ -223,19 +216,58 @@ class UserShow extends React.Component {
                   </div>
                 </div>}
               </div>
-              <ul className="columns is-multiline columns">
-                {this.state.user.images.map(image =>
-                  <li
-                    className="column is-half usincont"
-                    key={image.id}
-                  >
-                    <Link to={`/images/${image.id}`}>
-                      <ImageCard {...image} />
-                    </Link>
-                  </li>
-                )}
-              </ul>
             </div>
+
+            <div className="columns column is-one-third">
+              {this.state.user.id === Auth.getPayload().sub &&
+                <div>
+                  <div className="section">
+                    {this.state.user.not_confirmed_friends.length > 0 &&
+                    <div>
+                      <div className="friendrel">
+                        Request recieved
+                      </div>
+                      <ul className="columns is-multiline blue-box">
+                        {this.state.user.not_confirmed_friends.map(friend =>
+                          <li
+                            className="column is-one-third friend-card"
+                            key={friend.id}
+                          >
+                            <Link to={`/users/${friend.id}`}>
+                              <UsersCard {...friend} />
+                            </Link>
+                          </li>
+                        )}
+                      </ul>
+                    </div>
+                    }
+                  </div>
+
+                  <div className="section">
+                    {this.state.user.request_sent.length > 0 ?
+                      <div>
+                        <div className="friendrel"> Requests sent </div>
+                        <ul className="columns is-multiline blue-box">
+                          {this.state.user.request_sent.map(friend =>
+                            <li
+                              className="column is-one-third friend-card"
+                              key={friend.id}
+                            >
+                              <Link to={`/users/${friend.id}`}>
+                                <UsersCard {...friend} />
+                              </Link>
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                      :
+                      <div></div>}
+                  </div>
+                </div>}
+
+
+            </div>
+
           </div>
         </div>
       </main>

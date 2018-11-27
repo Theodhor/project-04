@@ -4,17 +4,17 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'bulma';
 import './scss/style.scss';
 import Navbar from './components/Navbar';
-import Register from './components/Register';
-import Login from './components/Login';
-import UsersIndex from './components/UsersIndex';
-import UsersShow from './components/UsersShow';
-import UserEdit from './components/UserEdit';
-import EventsIndex from './components/EventsIndex';
-import EventsShow from './components/EventsShow';
-import EventsNew from './components/EventsNew';
-import ImageIndex from './components/ImageIndex';
-import ImageShow from './components/ImageShow';
-import ImageNew from './components/ImageNew';
+import Register from './components/users/Register';
+import Login from './components/users/Login';
+import UsersIndex from './components/users/UsersIndex';
+import UsersShow from './components/users/UsersShow';
+import UserEdit from './components/users/UserEdit';
+import EventsIndex from './components/events/EventsIndex';
+import EventsShow from './components/events/EventsShow';
+import EventsNew from './components/events/EventsNew';
+import ImageIndex from './components/images/ImageIndex';
+import ImageShow from './components/images/ImageShow';
+import ImageNew from './components/images/ImageNew';
 
 class App extends React.Component {
 

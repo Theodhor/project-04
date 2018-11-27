@@ -1,26 +1,22 @@
+@import 'userCard.scss';
+@import 'userShow.scss';
+@import 'userIndex.scss';
+@import 'imageCard.scss';
+@import 'imageShow.scss';
+@import 'imageIndex.scss';
+@import 'eventCard.scss';
+@import 'eventShow.scss';
+@import 'eventIndex.scss';
+
 * {
   box-sizing: border-box;
 }
 .card{
   height: 100%;
 }
-.card-header{
-  height: 10%;
-  border: 1px solid blue;
-  justify-content: space-around;
-}
-.cardup{
-  font-weight: bold;
-  font-size: 16px;
-}
-.card-image{
-  height: 90%;
-  display: flex;
-  justify-content: center;
-  border: 1px solid darkgrey;
-}
+
 .usincont{
-  height:35vh;
+  height:20vh;
 }
 .friendrel{
   font-size: 18px;
@@ -124,4 +120,35 @@ justify-content: space-around;
   height: 60vh;
   width: 70%;
   margin: 10px auto;
+}
+
+.navbar{
+  background-color: black;
+}
+.navbar-item{
+  color: blue;
+  font-weight: bold;
+}
+
+.full-height{
+  height: 100%;
+}
+.space-around{
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-image{
+  height: 80vh;
+}
+
+.edit-image-contenitor{
+  display: flex;
+  justify-content: center;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }

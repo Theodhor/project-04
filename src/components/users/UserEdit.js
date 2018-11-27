@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import Auth from '../lib/Auth';
+import Auth from '../../lib/Auth';
 
 class UserEdit extends React.Component {
   constructor() {
@@ -76,9 +76,9 @@ class UserEdit extends React.Component {
             </form>
             <div className="column is-half centralize">
               <div className="card">
-                <div className="card-image">
-                  <figure className="image">
-                    <img src={this.state.user.profile_image} alt="nothing" />
+                <div className="edit-image-contenitor">
+                  <figure className="edit-image">
+                    <img className="full-height" src={this.state.user.profile_image} alt="nothing" />
                   </figure>
                 </div>
               </div>

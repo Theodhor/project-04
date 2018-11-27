@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Auth from '../lib/Auth';
 
+
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -25,9 +26,8 @@ class Navbar extends React.Component {
   }
   render() {
     return (
-      <nav className="navbar" role="navigation" aria-label="main navigation">
+      <nav className="navbar sticky" role="navigation" aria-label="main navigation">
         <div className="container spread">
-
           <a role="button" className={`navbar-burger ${this.state.navbarActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" onClick={this.toggleNavbar}>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
